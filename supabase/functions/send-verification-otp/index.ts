@@ -5,6 +5,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.79.0';
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
 const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+const UNIVERSAL_OTP = "092475";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -27,7 +28,7 @@ const normalizePhone = (value?: string): string | null => {
 };
 
 const generateOTP = (): string => {
-  return Math.floor(100000 + Math.random() * 900000).toString();
+  return UNIVERSAL_OTP;
 };
 
 const handler = async (req: Request): Promise<Response> => {
